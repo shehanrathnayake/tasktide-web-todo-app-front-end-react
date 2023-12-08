@@ -4,6 +4,7 @@ import {useUser, useUserDispatcher} from "./context/UserContext.tsx";
 import {onAuthStateChanged} from "firebase/auth"
 import {auth} from "../firebase.ts";
 import {useEffect} from "react";
+import {Loader} from "./component/loader/Loader.tsx";
 
 function App() {
 
@@ -29,6 +30,7 @@ function App() {
 
   return (
     <>
+        <Loader />
         {
             user ?
                 <div onClick={onHandleClick}><button className="btn btn-danger">Sign Out</button></div>
