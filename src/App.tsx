@@ -6,6 +6,7 @@ import {auth} from "../firebase.ts";
 import {useEffect, useState} from "react";
 import {Loader} from "./component/loader/Loader.tsx";
 import {Header} from "./component/header/Header.tsx";
+import {Task} from "./component/task/Task.tsx";
 
 function App() {
 
@@ -31,6 +32,16 @@ function App() {
         signOut(auth)
     }
 
+    const taskList = [
+        {'id': 1, 'description': 'Task 1', 'status': true, 'email': 'abc'},
+        {'id': 2, 'description': 'Task 2', 'status': false, 'email': 'abc'},
+        {'id': 3, 'description': 'Task 3', 'status': true, 'email': 'abc'},
+        {'id': 4, 'description': 'Task 4', 'status': true, 'email': 'abc'},
+        {'id': 5, 'description': 'Task 5', 'status': true, 'email': 'abc'},
+        {'id': 6, 'description': 'Task 5', 'status': true, 'email': 'abc'},
+        {'id': 7, 'description': 'Task 5', 'status': true, 'email': 'abc'}
+    ]
+
 
   return (
     <>
@@ -40,7 +51,18 @@ function App() {
             user ?
                 (<>
                     <Header />
+                    <div className="container">
+                        <div className="row">
+                            <div className="col">
+                                <ul className="d-flex justify-content-center align-content-center gap-2 flex-wrap list-unstyled">
+                                    {taskList.map(task =>
+                                        <Task key={task.id} {...task} />
+                                    )}
+                                </ul>
+                            </div>
+                        </div>
 
+                    </div>
                 </>)
                 :
                 <SignIn />

@@ -18,7 +18,7 @@ export function Header() {
                     setImageUrl(image || undefined)
 
                 } else {
-                    setImageUrl("#")
+                    setImageUrl("")
                 }
             })
         };
@@ -29,6 +29,10 @@ export function Header() {
     }
 
     function onHandleImageClick() {
+        setProfileDisplay(!profileDisplay)
+    }
+
+    function onHandleImageClick1() {
         setProfileDisplay(!profileDisplay)
     }
 
@@ -43,11 +47,11 @@ export function Header() {
                 </div>
                 <div className="`${user ? d-flex : d-none}` col justify-content-end">
                     <div id="img-user-cover">
-                        <img onClick={onHandleImageClick} id="img-user" className="img-fluid" src={user ? imageUrl : "#"} alt=""/>
+                        <img onClick={onHandleImageClick1} id="img-user" className="img-fluid" src={user ? imageUrl : ""} alt=""/>
                     </div>
                 </div>
             </div>
-            <div className={profileDisplay ? "d-block" : "d-none"} id="header-profile-container">
+            <div onBlur={onHandleImageClick} className={profileDisplay ? "d-block" : "d-none"} id="header-profile-container">
                 <div className="card card-body">
                     <div id="user-name" className="text-center border-bottom py-2">{user?.displayName}</div>
                     <div id="user-email" className="text-center border-bottom py-2">{user?.email}</div>

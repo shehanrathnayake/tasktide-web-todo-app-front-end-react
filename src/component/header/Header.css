@@ -28,6 +28,7 @@
     /*background-color: #d8f7ff;*/
     position: absolute;
     right: 0;
+    z-index: 9000;
 }
 
 #user-email {

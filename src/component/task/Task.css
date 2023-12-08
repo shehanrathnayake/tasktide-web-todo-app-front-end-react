@@ -1,0 +1,13 @@
+.task {
+    width: 300px;
+}
+#task-body {
+    background-color: #9dedfc;
+}
+
+textarea {
+    border: none;
+    background-color: #9dedfc;
+    height: 100%;
+    resize: both;
+}
