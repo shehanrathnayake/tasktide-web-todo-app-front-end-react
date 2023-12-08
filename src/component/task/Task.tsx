@@ -8,7 +8,7 @@ export function Task(task: TaskDto) {
                 <div>
                     <input type="checkbox"/>
                 </div>
-                <textarea name="" id="" rows={8} defaultValue={task.description}></textarea>
+                <textarea rows={8} defaultValue={task.description}></textarea>
             </div>
         </li>
     );
