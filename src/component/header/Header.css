@@ -1,0 +1,40 @@
+#header-container {
+    position: relative;
+}
+#img-header {
+    width: 32px;
+}
+
+#main-title {
+    text-decoration: none;
+}
+
+#txt-title {
+    color: #36c3d7;
+}
+
+#img-user {
+    width: 35px;
+    height: 35px;
+    outline: 2px solid #FF7043;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#header-profile-container{
+    font-size: 0.8rem;
+    font-weight: 600;
+    width: 300px;
+    /*background-color: #d8f7ff;*/
+    position: absolute;
+    right: 0;
+}
+
+#user-email {
+    color: #9a9a9a;
+}
+
+#user-name:hover,
+#user-email:hover {
+    background-color: #e8e8e8;
+}

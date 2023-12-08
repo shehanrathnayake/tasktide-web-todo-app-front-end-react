@@ -6,7 +6,7 @@ type Action = {
     [property: string]: any
 }
 
-const UserContext = createContext<User | null>(null);
+const UserContext = createContext<User | undefined>(undefined);
 const UserDispatcherContext = createContext<React.Dispatch<Action>>(()=>{});
 
 function userReducer(user: User, action: Action) {

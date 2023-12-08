@@ -1,21 +1,25 @@
 import './App.css'
 import {SignIn} from "./component/signin/SignIn.tsx";
 import {useUser, useUserDispatcher} from "./context/UserContext.tsx";
-import {onAuthStateChanged} from "firebase/auth"
+import {onAuthStateChanged, signOut} from "firebase/auth"
 import {auth} from "../firebase.ts";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import {Loader} from "./component/loader/Loader.tsx";
+import {Header} from "./component/header/Header.tsx";
 
 function App() {
 
     const user = useUser();
     const userDispatcher = useUserDispatcher();
+    const [loader, setLoader] = useState(true);
 
     useEffect(() => {
         return () => {
             onAuthStateChanged(auth, (user) => {
+                setLoader(false)
                 if (user) {
                     userDispatcher({type: 'sign-in', user})
+                    console.log(user)
                 } else {
                     userDispatcher({type: 'sign-out'})
                 }
@@ -24,20 +28,23 @@ function App() {
     }, []);
 
     function onHandleClick() {
-        userDispatcher({type: 'sign-out'})
+        signOut(auth)
     }
 
 
   return (
     <>
-        <Loader />
         {
+            loader ? <Loader />
+            :
             user ?
-                <div onClick={onHandleClick}><button className="btn btn-danger">Sign Out</button></div>
+                (<>
+                    <Header />
+
+                </>)
                 :
                 <SignIn />
         }
-
     </>
   )
 }
