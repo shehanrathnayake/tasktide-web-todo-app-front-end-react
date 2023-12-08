@@ -1,0 +1,13 @@
+#signin-view {
+    background-color: rgba(0, 0, 0, 0.5);
+    /*opacity: 50%;*/
+    color: white;
+}
+
+#img-logo-signin{
+    width: 128px;
+}
+
+#btn-google-signin:hover {
+    cursor: pointer;
+}

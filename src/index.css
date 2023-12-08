@@ -1,2 +1,6 @@
 @import "bootstrap";
 @import "bootstrap-icons";
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
