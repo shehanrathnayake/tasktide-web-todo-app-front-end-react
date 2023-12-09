@@ -1,0 +1,14 @@
+#footer-container {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: white;
+    color: black;
+    font-weight: 600;
+    z-index: 20;
+}
+
+#footer-content {
+    font-size: 0.8rem;
+}

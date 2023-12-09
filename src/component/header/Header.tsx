@@ -46,7 +46,11 @@ export function Header() {
 
     function onHandleAddNewTask(e: React.FormEvent) {
         e.preventDefault();
-        if (!value.trim()) return;
+        if (!value.trim()) {
+            setValue("");
+            setNewTaskDisplay(false);
+            return;
+        }
         saveTask(new TaskDto(null, value,null, user?.email!))
             .then(task => {
                 taskDispatcher({type: 'add', task});

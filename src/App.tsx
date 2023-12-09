@@ -9,6 +9,7 @@ import {Header} from "./component/header/Header.tsx";
 import {Task} from "./component/task/Task.tsx";
 import {TaskList} from "./component/tasklist/TaskList.tsx";
 import {TaskProvider} from "./context/TaskContext.tsx";
+import {Footer} from "./component/footer/Footer.tsx";
 
 function App() {
 
@@ -40,6 +41,7 @@ function App() {
                         <Header />
                         <TaskList />
                     </TaskProvider>
+                    <Footer />
                 </>)
                 :
                 <SignIn />

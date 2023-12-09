@@ -1,5 +1,8 @@
 #header-container {
     position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
     z-index: 10;
 }
 #img-header {
@@ -43,6 +46,11 @@
 
 #btn-new {
     color: white;
+}
+
+i {
+    color: white;
+    font-weight: 700;
 }
 
 #new-task-container {

@@ -1,13 +1,99 @@
 .task {
     width: 300px;
+    position: relative;
 }
 #task-body {
-    background-color: #9dedfc;
+    background-color: #d0f4ff;
 }
 
 textarea {
     border: none;
-    background-color: #9dedfc;
+    border-radius: 5px;
+    background-color: #fdc0c0;
     height: 100%;
     resize: both;
+}
+
+#check-box{
+    width: 20px;
+    height: 20px;
+    background-color: white;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#background-colors{
+    position: absolute;
+    right: 5px;
+    top: 40px;
+    z-index: 1;
+    background-color: #efefef;
+    padding: 10px;
+}
+
+.color-box {
+    width: 18px;
+    height: 18px;
+    border-radius: 3px;
+    border: 1px solid lightgray;
+    cursor: pointer;
+}
+
+.color-box:hover {
+    transform: scale(1.2);
+}
+
+#c0f2fd {
+    background-color: #c0f2fd;
+}
+
+#fdf9c0 {
+    background-color: #fdf9c0;
+}
+
+#c0fdc8 {
+    background-color: #c0fdc8;
+}
+
+#fdc0f5 {
+    background-color: #fdc0f5;
+}
+
+#fdd7c0 {
+    background-color: #fdd7c0;
+}
+
+#checked-sign {
+    font-size: 1.3rem;
+    color: limegreen;
+    font-weight: 900;
+    padding: 0;
+    cursor: pointer;
+}
+
+#task-settings{
+    color: #9a9a9a;
+    cursor: pointer;
+}
+
+#task-container-header {
+    height: 35px;
+}
+
+#task-trash{
+    color: gray;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+#task-trash:hover{
+    color: red;
+    transform: scale(1.2);
+}
+
+#setting-separator {
+    height: 1px;
+    border: 1px solid lightgray;
+    margin-bottom: 5px;
 }

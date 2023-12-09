@@ -37,7 +37,7 @@ export function TaskList() {
         <div id="taskList-container" className="container">
             <div className="row">
                 <div className="col">
-                    <ul className="d-flex justify-content-center align-content-center gap-2 flex-wrap list-unstyled">
+                    <ul className="d-flex justify-content-center align-content-center gap-3 flex-wrap list-unstyled">
                         {taskList.map(task =>
                             <Task key={task.id} {...task} />
                         )}

@@ -1,6 +1,6 @@
 import {TaskDto} from "../dto/TaskDto.ts";
 
-const API_BASE_URL = 'http://localhost:8080/tasks';
+const API_BASE_URL = 'http://localhost:8080/todos';
 
 export async function getAllTasks(email: string) {
     return await (await fetch(`${API_BASE_URL}?email=${email}`)).json();
@@ -31,7 +31,7 @@ export async function updateTask(task: TaskDto) {
     if (!response.ok) throw new Error("Failed to update the task");
 }
 
-export async function deleteTask(taskId: number) {
-    const response = await fetch(`${API_BASE_URL}/${taskId}`, {method: 'DELETE'});
+export async function deleteTask(taskId: number, email: string) {
+    const response = await fetch(`${API_BASE_URL}/${taskId}?email=${email}`, {method: 'DELETE'});
     if (!response.ok) throw new Error("Failed to delete the task");
 }
