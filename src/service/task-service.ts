@@ -17,7 +17,6 @@ export async function saveTask(task: TaskDto) {
 }
 
 export async function updateTask(task: TaskDto, value:string, status:boolean | null, color:string) {
-    console.log('updated task: ',task, value, status, color)
     const response = await fetch(`${API_BASE_URL}/${task.id}`, {
         method: 'PATCH',
         headers: {

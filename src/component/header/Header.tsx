@@ -1,6 +1,6 @@
 import './Header.css'
 import {useUser} from "../../context/UserContext.tsx";
-import React, {ReactNode, useEffect, useId, useRef, useState} from "react";
+import React, {useEffect, useRef, useState} from "react";
 import {onAuthStateChanged, signOut} from "firebase/auth";
 import {auth} from "../../../firebase.ts";
 import {useTaskDispatcher} from "../../context/TaskContext.tsx";
@@ -31,7 +31,7 @@ export function Header() {
         };
     }, []);
 
-    function onHandleClick() {
+    function onHandleClick() {signOut
         signOut(auth)
     }
 
@@ -61,6 +61,7 @@ export function Header() {
         if (!value.trim()) {
             setValue("");
             setNewTaskDisplay(false);
+            setDisplaySettings(false);
             return;
         }
         saveTask(new TaskDto(null, value,null, bgColor, user?.email!))
@@ -68,6 +69,7 @@ export function Header() {
                 taskDispatcher({type: 'add', task});
                 setValue("");
                 setNewTaskDisplay(false);
+                setDisplaySettings(false);
             }).catch(err => {
                 alert("Failed to save the task, try again");
         })

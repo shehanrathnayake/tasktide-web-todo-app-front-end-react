@@ -12,6 +12,8 @@ textarea {
     background-color: #fdc0c0;
     height: 100%;
     resize: both;
+    font-size: 0.8rem;
+    font-weight: 500;
 }
 
 #check-box{

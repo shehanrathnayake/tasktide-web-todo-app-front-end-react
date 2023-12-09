@@ -1,6 +1,6 @@
 import {TaskDto} from "../../dto/TaskDto.ts";
 import './Task.css'
-import React, {ReactNode, useId, useRef, useState} from "react";
+import React, {useId, useState} from "react";
 import {useTaskDispatcher} from "../../context/TaskContext.tsx";
 import {deleteTask, updateTask} from "../../service/task-service.ts";
 
@@ -13,7 +13,8 @@ export function Task(task: TaskDto) {
     const [value, setValue] = useState(task.description);
 
     function onHandleBlurTextArea() {
-        updateTasks(checked, bgColor);
+        if (value) updateTasks(checked, bgColor);
+        else onHandleClickDelete();
     }
 
     function onHandleClickChecked(e: React.MouseEvent<HTMLDivElement>) {
