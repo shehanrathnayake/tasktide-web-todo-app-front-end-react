@@ -17,7 +17,7 @@ function taskReducer(taskList: TaskDto[], action: Action) {
     } else if (action.type === 'update') {
         return taskList.map(task => {
             if (task.id === action.task.id) {
-                return {...task, status: !task.status}
+                return {...task, description: action.description, status: action.status, color: action.color}
             }
             return task;
         })

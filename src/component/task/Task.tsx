@@ -9,18 +9,33 @@ export function Task(task: TaskDto) {
     const taskDispatcher = useTaskDispatcher();
     const [checked, setChecked] = useState(task.status);
     const [displaySettings, setDisplaySettings] = useState(false);
-    const [bgColor, setBgColor] = useState(`#c0f2fd`);
+    const [bgColor, setBgColor] = useState(`${task.color}`);
+    const [value, setValue] = useState(task.description);
 
-    function onHandleBlur() {
-
+    function onHandleBlurTextArea() {
+        updateTasks(checked, bgColor);
     }
 
-    function onHandleClick(e: React.MouseEvent<HTMLDivElement>) {
-        updateTask(task).then(val => {
-            setChecked(!checked);
+    function onHandleClickChecked(e: React.MouseEvent<HTMLDivElement>) {
+        let status = !checked;
+        setChecked(status);
+        updateTasks(status, bgColor);
+    }
+
+    function onHandleClickColors(e: React.MouseEvent<HTMLDivElement>) {
+        let changedColor = `#${e.currentTarget.id}`;
+        setBgColor(changedColor);
+        updateTasks(checked, changedColor);
+    }
+
+    function updateTasks(checked:boolean | null, bgColor:string) {
+        updateTask(task, value, checked, bgColor).then(val => {
             taskDispatcher({
                 type: 'update',
-                task
+                task,
+                description: value,
+                status: checked,
+                color: bgColor
             });
         }).catch(err => {
             alert("Failed to update the task, try again!");
@@ -29,10 +44,6 @@ export function Task(task: TaskDto) {
 
     function onHandleClickSettings() {
         setDisplaySettings(!displaySettings);
-    }
-
-    function onHandleClickColors(e: React.MouseEvent<HTMLDivElement>) {
-        setBgColor(`#${e.currentTarget.id}`)
     }
 
     function onHandleClickDelete() {
@@ -51,13 +62,13 @@ export function Task(task: TaskDto) {
         <li className="task align-self-start">
             <div style={{backgroundColor: bgColor}} id="task-body" className="card card-body">
                 <div id="task-container-header" className="d-flex justify-content-between align-items-center pb-2">
-                    <div onClick={onHandleClick} id={id}>
+                    <div onClick={onHandleClickChecked} id={id}>
                         <div className={checked ? 'd-none' : 'd-block'} id="check-box"></div>
                         <i id="checked-sign" className={`${checked ? 'd-block' : 'd-none'} bi bi-check2-square`}></i>
                     </div>
                     <i onClick={onHandleClickSettings} id="task-settings" className="bi bi-three-dots"></i>
                 </div>
-                <textarea style={{backgroundColor: bgColor}} onBlur={onHandleBlur} rows={8} defaultValue={task.description}></textarea>
+                <textarea style={{backgroundColor: bgColor}} onBlur={onHandleBlurTextArea} value={value} onChange={e => setValue(e.target.value)} rows={8}></textarea>
             </div>
             <div id="background-colors" className={`${displaySettings ? 'd-flex' : 'd-none'} flex-column gap-2 card card-body`}>
                 <i onClick={onHandleClickDelete} id="task-trash" className="bi bi-trash3"></i>

@@ -16,15 +16,17 @@ export async function saveTask(task: TaskDto) {
     })).json() as TaskDto
 }
 
-export async function updateTask(task: TaskDto) {
+export async function updateTask(task: TaskDto, value:string, status:boolean | null, color:string) {
+    console.log('updated task: ',task, value, status, color)
     const response = await fetch(`${API_BASE_URL}/${task.id}`, {
         method: 'PATCH',
         headers: {
             "Content-Type": "application/json"
         },
         body: JSON.stringify({
-            description: task.description,
-            status: !task.status,
+            description: value,
+            status: status,
+            color: color,
             email: task.email
         })
     });

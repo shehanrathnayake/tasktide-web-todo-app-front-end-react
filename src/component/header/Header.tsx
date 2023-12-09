@@ -1,6 +1,6 @@
 import './Header.css'
 import {useUser} from "../../context/UserContext.tsx";
-import React, {useEffect, useRef, useState} from "react";
+import React, {ReactNode, useEffect, useId, useRef, useState} from "react";
 import {onAuthStateChanged, signOut} from "firebase/auth";
 import {auth} from "../../../firebase.ts";
 import {useTaskDispatcher} from "../../context/TaskContext.tsx";
@@ -14,6 +14,8 @@ export function Header() {
     const textareaRef = useRef<HTMLTextAreaElement>(null);
     const taskDispatcher = useTaskDispatcher();
     const [value, setValue] = useState("");
+    const [displaySettings, setDisplaySettings] = useState(false);
+    const [bgColor, setBgColor] = useState(`#c0f2fd`);
 
     useEffect(() => {
         return () => {
@@ -44,14 +46,24 @@ export function Header() {
         }
     }
 
-    function onHandleAddNewTask(e: React.FormEvent) {
+    function onHandleClickSettings() {
+        setDisplaySettings(!displaySettings)
+    }
+
+    function onHandleClickColors(e: React.MouseEvent<HTMLDivElement>) {
+        setBgColor(`#${e.currentTarget.id}`)
+    }
+
+
+    function onHandlerClickSubmit(e: React.FormEvent) {
         e.preventDefault();
+        e.stopPropagation()
         if (!value.trim()) {
             setValue("");
             setNewTaskDisplay(false);
             return;
         }
-        saveTask(new TaskDto(null, value,null, user?.email!))
+        saveTask(new TaskDto(null, value,null, bgColor, user?.email!))
             .then(task => {
                 taskDispatcher({type: 'add', task});
                 setValue("");
@@ -59,6 +71,12 @@ export function Header() {
             }).catch(err => {
                 alert("Failed to save the task, try again");
         })
+    }
+
+    function onHandlerClickCancel() {
+        setValue("");
+        setNewTaskDisplay(false);
+        setDisplaySettings(false);
     }
 
     return (
@@ -85,20 +103,31 @@ export function Header() {
                         <div>
                             <button onClick={onHandleClick} className="mt-3 btn btn-danger btn-sm w-100">Sign Out</button>
                         </div>
-
                     </div>
-
                 </div>
             </div>
             <div id="new-task-container" className={`task vh-100 ${newTaskDisplay ? 'd-flex' : 'd-none'} justify-content-center align-items-center`}>
-                <div>
-                    <form onBlur={onHandleAddNewTask} id="new-task-card" className="card card-body w-300">
-                        <div>
-                            <input type="checkbox"/>
+                <div id="new-card">
+                    <form style={{backgroundColor: bgColor}} id="new-task-card" className="card card-body w-300">
+                        <div id="task-container-header" className="d-flex justify-content-end align-items-center pb-2">
+                            <i onClick={onHandleClickSettings} id="task-settings" className="bi bi-three-dots"></i>
                         </div>
-                        <textarea value={value} onChange={e => setValue(e.target.value)} ref={textareaRef} placeholder="Write anything..." rows={8}></textarea>
+                        <textarea style={{backgroundColor: bgColor}} value={value} onChange={e => setValue(e.target.value)} ref={textareaRef} placeholder="Write anything..." rows={8}></textarea>
+                        <div className="d-flex justify-content-end gap-2 mt-2">
+                            <i onClick={onHandlerClickSubmit} id="btn-add" className="bi bi-bookmark-plus"></i>
+                            <i onClick={onHandlerClickCancel} id="btn-cancel" className="bi bi-backspace-reverse"></i>
+                        </div>
+
                     </form>
+                    <div id="background-colors" className={`${displaySettings ? 'd-flex' : 'd-none'} flex-column gap-2 card card-body`}>
+                        <div onClick={onHandleClickColors} id="c0f2fd" className="color-box"></div>
+                        <div onClick={onHandleClickColors} id="fdf9c0" className="color-box"></div>
+                        <div onClick={onHandleClickColors} id="c0fdc8" className="color-box"></div>
+                        <div onClick={onHandleClickColors} id="fdc0f5" className="color-box"></div>
+                        <div onClick={onHandleClickColors} id="fdd7c0" className="color-box"></div>
+                    </div>
                 </div>
+
             </div>
         </>
 

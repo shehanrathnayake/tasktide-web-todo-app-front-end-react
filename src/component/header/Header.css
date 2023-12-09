@@ -65,4 +65,22 @@ i {
 #new-task-card {
     width: 300px;
     background-color: #9dedfc;
+
+}
+
+#new-card {
+    position: relative;
+}
+
+#btn-add,
+#btn-cancel{
+    color: #7c7c7c;
+    font-size: 1.2rem;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+#btn-add:hover,
+#btn-cancel:hover {
+    color: black;
 }

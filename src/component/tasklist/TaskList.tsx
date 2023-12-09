@@ -23,7 +23,6 @@ export function TaskList() {
     useEffect(() => {
         getAllTasks(user!.email!).then(taskList => {
             taskDispatcher({type: 'set-list', taskList})
-            console.log('tasklist at getAll Task: ', taskList)
         }).catch(err => {
             alert("Failed to load tasks")
         })
