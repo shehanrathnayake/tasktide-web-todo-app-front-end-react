@@ -17,8 +17,8 @@ function App() {
     const [loader, setLoader] = useState(true);
 
     useEffect(() => {
-        return () => {
-            onAuthStateChanged(auth, (user) => {
+
+            const unsubscribe = onAuthStateChanged(auth, (user) => {
                 setLoader(false)
                 if (user) {
                     userDispatcher({type: 'sign-in', user})
@@ -26,7 +26,7 @@ function App() {
                     userDispatcher({type: 'sign-out'})
                 }
             })
-        };
+            return ()=> unsubscribe();
     }, []);
 
   return (

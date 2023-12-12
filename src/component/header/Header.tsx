@@ -17,9 +17,23 @@ export function Header() {
     const [displaySettings, setDisplaySettings] = useState(false);
     const [bgColor, setBgColor] = useState(`#c0f2fd`);
 
+    // useEffect(() => {
+    //     return () => {
+    //         onAuthStateChanged(auth, (user) => {
+    //             if (user) {
+    //                 let image = user?.photoURL
+    //                 setImageUrl(image || undefined)
+    //
+    //             } else {
+    //                 setImageUrl("")
+    //             }
+    //         })
+    //     };
+    // }, []);
+
     useEffect(() => {
-        return () => {
-            onAuthStateChanged(auth, (user) => {
+
+            const unsubscribed = onAuthStateChanged(auth, (user) => {
                 if (user) {
                     let image = user?.photoURL
                     setImageUrl(image || undefined)
@@ -28,7 +42,9 @@ export function Header() {
                     setImageUrl("")
                 }
             })
-        };
+
+            return ()=> unsubscribed();
+
     }, []);
 
     function onHandleClick() {signOut
@@ -87,7 +103,7 @@ export function Header() {
                 <div className="row p-2 d-flex">
                     <div className="col">
                         <a id="main-title" className="d-flex align-items-start justify-content-start gap-3" href="#">
-                            <img id="img-header" src="/src/assets/tasktide-logo.png" alt="Tasktide logo"/>
+                            <img id="img-header" src="/logo/tasktide_logo.png" alt="Tasktide logo"/>
                             <h2 className="m-0" id="txt-title">TaskTide</h2>
                         </a>
                     </div>
