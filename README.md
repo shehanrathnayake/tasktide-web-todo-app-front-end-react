@@ -1,7 +1,7 @@
 # TaskTide To Do App
 
 ### Version
-0.1.0
+1.0.0
 
 ### License
 Copyright &copy; 2023 Shehan Rathnayake. All Rights Reserved.<br>
@@ -29,6 +29,10 @@ Welcome to TaskTide, a sophisticated Todo Web App built using React for the fron
 - **Back End** - Java Spring Framework
 - **Database** - PostgreSQL
 - **Hosting and Authentication** - Firebase
+
+## Supported Links
+
+- [Hosted Website URL on Firebase](https://to-do-app-13ecd.web.app/) 👈
 
 ## Sample Images
 

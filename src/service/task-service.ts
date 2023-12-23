@@ -1,6 +1,6 @@
 import {TaskDto} from "../dto/TaskDto.ts";
 
-const API_BASE_URL = 'http://localhost:8080/todos';
+const API_BASE_URL = 'https://tasktide-todo-app.df.r.appspot.com/api/v1/todos';
 
 export async function getAllTasks(email: string) {
     return await (await fetch(`${API_BASE_URL}?email=${email}`)).json();
