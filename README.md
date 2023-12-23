@@ -26,13 +26,13 @@ Welcome to TaskTide, a sophisticated Todo Web App built using React for the fron
 ## Tech Stack Used
 
 - **Front End** - React
-- **Back End** - Java Spring Framework
-- **Database** - PostgreSQL
 - **Hosting and Authentication** - Firebase
 
 ## Supported Links
 
 - [Hosted Website URL on Firebase](https://to-do-app-13ecd.web.app/) 👈
+- [Back-end - API URL with user email](https://tasktide-todo-app.df.r.appspot.com/api/v1/todos?email=shehandj.swd@gmail.com) 👈
+- [Back-end GitHub Repository](https://github.com/shehanrathnayake/tasktide-web-todo-app-backend-springboot-firestore) 👈
 
 ## Sample Images
 
